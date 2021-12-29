@@ -78,6 +78,16 @@ const Exam: React.FC = () => {
 
     }
 
+    const isQuestionAns = (questionId: number) => {
+
+        const ans = ansList.find(ans => ans.id === questionId);
+
+        if (!ans) return false;
+
+        return ans.options.length > 0;
+
+    }
+
     const handleResult = () => {
 
         let count: number = 0;
@@ -105,7 +115,7 @@ const Exam: React.FC = () => {
         <div data-testid="exam">
             <h3>Language: {user.lang}</h3>
             {
-                getQuestionByLang(user.lang).map((value, index) => (
+                getQuestionByLang(user.lang).map((question, index) => (
                     <span
                         key={index}
                         style={{
@@ -115,7 +125,7 @@ const Exam: React.FC = () => {
                             height: "30px",
                             lineHeight: "30px",
                             borderRadius: "50%",
-                            backgroundColor: "grey",
+                            backgroundColor: `${isQuestionAns(question.id) ? "red" : "grey"}`,
                             cursor: "pointer"
                         }}
                         onClick={() => setCurrentQ(index)}
