@@ -3,27 +3,21 @@ import {Router} from "react-router-dom";
 import {render, screen} from '@testing-library/react';
 import Exam from "../pages/Exam";
 import {createMemoryHistory} from "history";
-import {UserInfo} from "../pages/Home";
+import Result from "../pages/Result";
 
 test('Exam render test', () => {
 
     const history = createMemoryHistory();
 
-    // "/exam?page=10&size=10"
-
-    // "/exam/:id"
-
-    const user: UserInfo = {name: "Joy", gender: "Male", lang: "Java"};
-
-    history.push("/exam", user);
+    history.push("/result", {});
 
     render(
         <Router history={history}>
-            <Exam/>
+            <Result/>
         </Router>
     );
-    const exam = screen.getByTestId("exam");
-    expect(exam).toBeInTheDocument();
+    const result = screen.getByTestId("result");
+    expect(result).toBeInTheDocument();
 
 });
 

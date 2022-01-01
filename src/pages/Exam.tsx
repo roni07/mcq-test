@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {useLocation, useNavigate} from "react-router-dom";
+import {useHistory, useLocation} from "react-router-dom";
 import {UserInfo} from "./Home";
 import {getQuestionByLang, Question} from "../json/Questions";
 
@@ -12,7 +12,7 @@ const Exam: React.FC = () => {
 
     const {state} = useLocation();
     const user = state as UserInfo;
-    const navigate = useNavigate();
+    const history = useHistory();
 
     const [currentQ, setCurrentQ] = useState<number>(0);
     const [ansList, setAnsList] = useState<Ans[]>([]);
@@ -105,9 +105,7 @@ const Exam: React.FC = () => {
 
         });
 
-        navigate("/result", {
-            state: {ansCount: count, count: questionList.length}
-        })
+        history.push("/result", {ansCount: count, count: questionList.length})
 
     }
 

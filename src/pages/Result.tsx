@@ -17,7 +17,7 @@ const Result = () => {
     }
 
     return (
-        <div>
+        <div data-testid="result">
             <h2>Result page</h2>
             <h3 style={{color: "green", padding: "5px", margin: "0"}}>Correct is {result.ansCount}</h3>
             <h3 style={{color: "red", padding: "10px", margin: "0"}}>Wrong is {result.count - result.ansCount}</h3>

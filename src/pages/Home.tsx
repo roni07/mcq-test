@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {useNavigate} from "react-router-dom";
+import {useHistory} from "react-router-dom";
 
 export interface UserInfo {
     name: string,
@@ -7,9 +7,9 @@ export interface UserInfo {
     lang: string,
 }
 
-const Home:React.FC = () => {
+const Home: React.FC = () => {
 
-    const navigate = useNavigate();
+    const history = useHistory();
 
     const [user, setUser] = useState<UserInfo>({
         name: "",
@@ -27,9 +27,7 @@ const Home:React.FC = () => {
     const handleSubmit = (e: React.FormEvent<EventTarget>) => {
         e.preventDefault();
         console.log(user);
-        navigate("/exam", {
-            state: user
-        });
+        history.push("/exam", user);
     }
 
     return (
